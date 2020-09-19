@@ -10,6 +10,7 @@ module.exports = {
 
       return res.json(await BadgeService.getBadges());
     } catch (err) {
+      console.log("Controller Error", err);
       return next(err);
     }
   },

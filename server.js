@@ -1,5 +1,7 @@
 const express = require("express");
 const server = express();
+const { handleError } = require("./src/utils/error");
+
 require("dotenv").config();
 require("./data/tdsDataBase");
 
@@ -31,6 +33,11 @@ server.use("/badges", badgeRoutes);
 //default notification of API availablility
 server.get("/", (req, res) => {
   res.send("TDS Api:  v1.0");
+});
+
+//error handler - must be last item in list
+server.use((err, req, res, next) => {
+  handleError(err, res);
 });
 
 if (process.env.NODE_ENV !== "test") {
