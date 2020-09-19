@@ -7,6 +7,7 @@ require("./data/tdsDataBase");
 
 //routes
 const badgeRoutes = require("./src/api/routes/badges");
+const departmentRoutes = require("./src/api/routes/department");
 
 server.use(express.Router());
 server.use(express.urlencoded({ extended: false }));
@@ -29,6 +30,7 @@ if (process.env.NODE_ENV) {
 
 //configure routes
 server.use("/badges", badgeRoutes);
+server.use("/department", departmentRoutes);
 
 //default notification of API availablility
 server.get("/", (req, res) => {
@@ -46,3 +48,5 @@ if (process.env.NODE_ENV !== "test") {
     console.log(`Listening on port ${process.env.SERVER_PORT}...`);
   });
 }
+
+module.exports = server;

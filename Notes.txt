@@ -1,2 +1,4 @@
 1.  Not familiar with oracle - spent time installing local oracle basic client and conencting to db
 2.  Keeping .env files in repo to simplify compiolng for test
+3.  added dependency injection in service
+4.  know i need to do date comparison in tests for active badge - cant remmber how to to greaterthan for object in array

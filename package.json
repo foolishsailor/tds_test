@@ -6,7 +6,10 @@
   "scripts": {
     "start:dev": "set NODE_ENV=development&& nodemon server.js",
     "start:prod": "set NODE_ENV=production&& nodemon server.js",
-    "test": "Test"
+    "test:watch": "set NODE_ENV=test&& jest --watch --detectOpenHandles"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "author": "JC Durbin",
   "license": "ISC",
@@ -16,6 +19,8 @@
     "oracledb": "^5.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "jest": "^26.4.2",
+    "nodemon": "^2.0.4",
+    "supertest": "^4.0.2"
   }
 }

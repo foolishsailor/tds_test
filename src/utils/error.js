@@ -8,11 +8,12 @@ class ErrorHandler extends Error {
 
 const handleError = (err, res) => {
   const { statusCode, message } = err;
-
+  /*
   console.log("******** ERROR ******");
   console.log("STATUSCODE", statusCode);
   console.log("MESSAGE", message);
   console.log("******** ERROR END ******");
+  */
   res.statusMessage = JSON.stringify(message);
 
   res.status(statusCode).send();

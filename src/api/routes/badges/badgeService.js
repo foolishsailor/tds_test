@@ -1,64 +1,36 @@
-const oracledb = require("oracledb");
-const { ErrorHandler } = require("../../../utils/error");
-
-const db_options = {
-  outFormat: oracledb.OUT_FORMAT_OBJECT, // query result format
-  // extendedMetaData: true,               // get extra metadata
-  // prefetchRows:     100,                // internal buffer allocation size for tuning
-  // fetchArraySize:   100                 // internal buffer allocation size for tuning
-};
-
-const handleError = ({ statusCode, message }) => {
-  throw new ErrorHandler(statusCode || 500, message);
-};
-
-const closeConnection = async (connection) => {
-  try {
-    await connection.close();
-  } catch (err) {
-    //internal error log and handle - not to be passed to user
-    console.error(err);
-  }
-};
+const handleRequest = require("../../../utils/requestHandler");
 
 module.exports = {
-  getBadges: async () => {
-    let connection;
-
-    try {
-      connection = await oracledb.getConnection();
-      const queryString = `SELECT * FROM Badge`;
-
-      const result = await connection.execute(queryString, {}, db_options);
-
-      if (result.rows.length === 0)
-        throw { statusCode: 204, message: "No Records" };
-
-      return result.rows;
-    } catch (err) {
-      handleError(err);
-    } finally {
-      if (connection) closeConnection(connection);
-    }
+  getBadges: async ({ connection }) => {
+    const queryString = `SELECT * FROM Badge`;
+    return handleRequest({ connection, queryString });
   },
-  getBadgeByNumber: async (number) => {
-    let connection;
+  getBadgeByNumber: async ({ badgeNumbers, connection }) => {
+    let badges, badgeParamaters;
 
+    //trap malformed query parameters
     try {
-      connection = await oracledb.getConnection();
+      badges = JSON.parse(badgeNumbers);
 
-      const queryString = `SELECT * FROM Badge where BADGE_NUMBER = :badgeNumber`;
-      const bindObj = {
-        badgeNumber: number,
-      };
+      //build parameterized array and trap non numeric badges
+      badgeParamaters = badges
+        .map((badge, index) => {
+          if (isNaN(badge))
+            throw { statusCode: 422, message: "UNPROCESSABLE ENTITY" };
 
-      const result = await connection.execute(queryString, bindObj, db_options);
-
-      return result;
+          return `:${index}`;
+        })
+        .join(", ");
     } catch (err) {
-      handleError(err);
-    } finally {
-      if (connection) closeConnection(connection);
+      throw { statusCode: 422, message: "UNPROCESSABLE ENTITY" };
     }
+
+    const queryString = `SELECT * FROM Badge WHERE BADGE_NUMBER IN (${badgeParamaters})`;
+
+    return handleRequest({ connection, queryString, bind: badges });
+  },
+  getActiveBadges: async ({ connection }) => {
+    const queryString = `SELECT * FROM Badge WHERE BADGE_STATUS = 'Active' AND BADGE_EXPIRY_DATE > CURRENT_TIMESTAMP`;
+    return handleRequest({ connection, queryString });
   },
 };
