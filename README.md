@@ -41,7 +41,7 @@ A basic static authentication has been used for demonstration purposes using a f
 
 ## API
 
-All routes require basic authentication as detailed above and return a 401 Error when no authroization is received.
+All routes require basic authentication as detailed above and return a 401 Error when no authroization is received. If viewing routes in a browser a popup challenge will appear asking for credentials.
 All routes return 404 if no records found
 
 ### Department
