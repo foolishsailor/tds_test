@@ -15,9 +15,9 @@ This is a RESTful API built to the requirements outlined here [Design Brief](htt
 
 Oracle Client libraries (64-bit) must be available.
 
-Follow the installation instructions:
-Windows Installation: https://oracle.github.io/node-oracledb/INSTALL.html#windowsinstallation
-MAC Installation: https://oracle.github.io/node-oracledb/INSTALL.html#-33-node-oracledb-installation-on-apple-macos
+Follow the installation instructions:  
+Windows Installation: https://oracle.github.io/node-oracledb/INSTALL.html#windowsinstallation  
+MAC Installation: https://oracle.github.io/node-oracledb/INSTALL.html#-33-node-oracledb-installation-on-apple-macos  
 
 ## Usage
 
@@ -42,24 +42,72 @@ A basic static authentication has been used for demonstration purposes using a f
 ## API
 
 All routes require basic authentication as detailed above and return a 401 Error when no authroization is received.
+All routes return 404 if no records found
 
-### GET /department
-
-#### Success Response
-
-Status Code: 200
-Content:
-
+### Department
+**department_object:**
 ```.js
   [
     {
-      department_code,
+      department_code: [,
       department_name
     }
   ]
-```
+```  
 
-#### Error Response
+#### GET /department
+##### Success Response
+Status Code: 200  
+Content: [ {department_object}, ]  
+
+### Badges
+**badge_object:**
+```.js
+  [
+    {
+      badge_number,
+      badge_status,
+      badge_expiry_date
+    }
+  ]
+```  
+#### GET /badges
+##### Success Response
+Status Code: 200  
+Content: [ {badge_object}, ]  
+  
+#### GET /badges/active
+Returns all badges with:  
+```.js 
+{
+badge_status: "Active,
+badge_expiry_date: Date < Current_Date
+}
+```  
+##### Success Response
+Status Code: **200**  
+Content: **[ {badge_object}, ]**  
+##### Error Response
+If no badges are currently active  
+Status Code: **404**  
+Status Message: **No Records**  
+  
+#### GET /badges?badgeNumber=[badge_number]
+Returns all badges with badge_number 
+##### Success Response
+Status Code: **200**  
+Content: **[ {badge_object} ]**  
+##### Error Response
+If no badges are currently active  
+Status Code: **404**  
+Status Message: **No Records**    
+    
+If query malformed or non-numeric  
+Status Code: **422**  
+Status Message: **UNPROCESSABLE ENTITY**
+
+
+
 
 ### General Notes
 
