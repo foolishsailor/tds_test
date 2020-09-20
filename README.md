@@ -50,13 +50,14 @@ All routes require basic authentication as detailed above and return a 401 Error
 Status Code: 200
 Content:
 
-`````.js
+```.js
   [
     {
       department_code,
       department_name
     }
-  ]````
+  ]
+```
 
 #### Error Response
 
