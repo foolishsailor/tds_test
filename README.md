@@ -39,6 +39,27 @@ A basic static authentication has been used for demonstration purposes using a f
 
 ##### password: SuperSecretPassword
 
+## API
+
+All routes require basic authentication as detailed above and return a 401 Error when no authroization is received.
+
+### GET /department
+
+#### Success Response
+
+Status Code: 200
+Content:
+
+````.js
+  [
+    {
+      department_code,
+      department_name
+    }
+  ]```
+
+#### Error Response
+
 ### General Notes
 
 1.  Not familiar with oracle - not sure if I have followed best practice for anything specific on connectivity.
@@ -70,3 +91,4 @@ Assume an "active employee" is one who is curretnly working at said organization
 
 added example to:
 **route:** /employees/active/suggested
+````
