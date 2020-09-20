@@ -55,7 +55,7 @@ All routes return 404 if no records found
   ]
 ```  
 
-#### GET /department
++ #### GET /department
 ##### Success Response
 Status Code: 200  
 Content: [ {department_object}, ]  
@@ -71,12 +71,12 @@ Content: [ {department_object}, ]
     }
   ]
 ```  
-#### GET /badges
++ #### GET /badges
 ##### Success Response
 Status Code: 200  
 Content: [ {badge_object}, ]  
   
-#### GET /badges/active
++ #### GET /badges/active
 Returns all badges with:  
 ```.js 
 {
@@ -92,8 +92,10 @@ Content: **[ {badge_object}, ]**
 Status Code: **404**  
 Status Message: **No Records**  
   
-#### GET /badges?badgeNumber=[badge_number]
++ #### GET /badges?badge_number=[badge_number]
 Returns all badges with badge_number  
+##### URL Query
+badge_number=[integer]  
 
 ##### Success Response
 Status Code: **200**  
@@ -105,8 +107,41 @@ Status Message: **No Records**
     
 Status Code: **422**  
 Status Message: **UNPROCESSABLE ENTITY**
-
-
+  
+  
+### Job Titles
+**job_title_object:**
+```.js
+  [
+    {
+      job_title_code,
+      job_title_name,
+      department_name
+    }
+  ]
+```  
++ #### GET /job_titles
+##### Success Response
+Status Code: **200**  
+Content: **[ {job_title_object}, ]**  
+  
+##### Error Response
+Status Code: **404**  
+Status Message: **No Records**    
+  
+  
++ #### GET /job_titles/:department_name
+##### Success Response
+Status Code: **200**  
+Content: **[ {job_title_object}, ]**  
+  
+##### Error Response
+Status Code: **404**  
+Status Message: **No Records**    
+    
+Status Code: **422**  
+Status Message: **UNPROCESSABLE ENTITY**
+    
 
 
 ### General Notes
