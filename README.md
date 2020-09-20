@@ -189,6 +189,7 @@ Status Code: **404**
 Status Message: **No Records**  
   
 + #### GET /employees/active/suggested
+See notes below on this route: [Suggested improvement on API design](#Suggested-improvement-on-API-design)
 Returns all employees with:  
 ```.js 
 {
