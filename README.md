@@ -49,8 +49,8 @@ All routes return 404 if no records found
 ```.js
   [
     {
-      department_code: [,
-      department_name
+      department_code: [integer],
+      department_name: [string]
     }
   ]
 ```  
@@ -65,9 +65,9 @@ Content: **[ {department_object}, ]**
 ```.js
   [
     {
-      badge_number,
-      badge_status,
-      badge_expiry_date
+      badge_number: [integer],
+      badge_status: ["Active" | "Expired"],
+      badge_expiry_date: [ISODATE_string]
     }
   ]
 ```  
@@ -114,9 +114,9 @@ Status Message: **UNPROCESSABLE ENTITY**
 ```.js
   [
     {
-      job_title_code,
-      job_title_name,
-      department_name
+      job_title_code: [integer],
+      job_title_name: [string],
+      department_name: [string]
     }
   ]
 ```  
