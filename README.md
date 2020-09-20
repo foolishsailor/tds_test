@@ -291,7 +291,7 @@ This would result in the following employees also being included as "active";
 
 **Suggested criteria and query**
 
-Assume an "active employee" is one who is curretnly working at said organization and therefore would have the following criteria met:
+Assume an "active employee" is one who is currently working at said organization and therefore would have the following criteria met:
 
 1. start date IS NOT NULL and before NOW
 2. leave date null or after now
