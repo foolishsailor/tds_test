@@ -189,7 +189,8 @@ Status Code: **404**
 Status Message: **No Records**  
   
 + #### GET /employees/active/suggested
-See notes below on this route: [Suggested improvement on API design](#Suggested-improvement-on-API-design)
+See notes below on this route: [Suggested improvement on API design](#Suggested-improvement-on-API-design)  
+
 Returns all employees with:  
 ```.js 
 {
@@ -205,7 +206,21 @@ Content: **[ {employee_object}, ]**
 Status Code: **404**  
 Status Message: **No Records** 
 
++ #### GET /employees?department_name=[department_name]
+Returns all employees in department_name  
+##### URL Query
+department_name=[string]  
+
+##### Success Response
+Status Code: **200**  
+Content: **[ {employee_object}, ]**  
+
+##### Error Response
+Status Code: **404**  
+Status Message: **No Records**    
     
+Status Code: **422**  
+Status Message: **UNPROCESSABLE ENTITY**
 
 
 ### General Notes
@@ -217,7 +232,7 @@ Status Message: **No Records**
 
 ### Suggested improvement on API design:
 
-**route:** /employees/active
+####route: /employees/active
 
 **Requested criteria**: from design doc - "Return all employees who DO NOT have a leave_date set or have a leave_date set in the past"
 
@@ -238,5 +253,5 @@ Assume an "active employee" is one who is curretnly working at said organization
 **Translates to:** 'SELECT \* FROM Employee WHERE (START_DATE IS NOT NULL AND START_DATE < CURRENT_TIMESTAMP) AND (LEAVE_DATE IS NULL OR LEAVE_DATE > CURRENT_TIMESTAMP)'
 
 added example to:
-**route:** /employees/active/suggested
+####route: /employees/active/suggested
 `````
