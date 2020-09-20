@@ -212,7 +212,7 @@ Status Message: **No Records**
 
 ```.js
 {
-   leave_date: [null | , Date < Current_Date]
+   leave_date: [null | Date < Current_Date]
 }
 ```
 
@@ -233,7 +233,7 @@ Returns all employees with:
 
 ```.js
 {
-   leave_date: [null | , Date > Current_Date],
+   leave_date: [null | Date > Current_Date],
    start_date: [Date < Current_Date]
 }
 ```
