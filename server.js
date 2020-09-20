@@ -23,20 +23,6 @@ server.use(
   })
 );
 
-// Add headers to allow development from local machine
-if (process.env.NODE_ENV) {
-  server.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-    res.header("Access-Control-Allow-Credentials", true);
-    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-    res.header(
-      "Access-Control-Allow-Headers",
-      "X-Requested-With,content-type, X-Auth,content-type"
-    );
-
-    next();
-  });
-}
 
 //configure routes
 server.use("/badges", badgeRoutes);
