@@ -237,7 +237,7 @@ Status Message: **UNPROCESSABLE ENTITY**
 
 ### Suggested improvement on API design:
 
-####route: /employees/active
+#### route: /employees/active
 
 **Requested criteria**: from design doc - "Return all employees who DO NOT have a leave_date set or have a leave_date set in the past"
 
@@ -248,6 +248,8 @@ This would result in the following employees also being included as "active";
 1.  Employees who have already left orginzation - leave date in past
 2.  Employees who have start dates in the future, like new hires that have been entered in system but arent currently live
 
+#### route: /employees/active/suggested  
+
 **Suggested criteria and query**
 
 Assume an "active employee" is one who is curretnly working at said organization and therefore would have the following criteria met:
@@ -257,6 +259,6 @@ Assume an "active employee" is one who is curretnly working at said organization
 
 **Translates to:** 'SELECT \* FROM Employee WHERE (START_DATE IS NOT NULL AND START_DATE < CURRENT_TIMESTAMP) AND (LEAVE_DATE IS NULL OR LEAVE_DATE > CURRENT_TIMESTAMP)'
 
-added example to:
-####route: /employees/active/suggested
+
+
 `````
