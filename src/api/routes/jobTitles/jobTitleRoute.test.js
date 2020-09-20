@@ -1,5 +1,6 @@
 const server = require("../../../../server");
 const supertest = require("supertest");
+const agent = supertest.agent(server).auth("admin", process.env.PASSWORD);
 const request = supertest(server);
 const { checkArrayEquality } = require("../../../utils/validateData");
 const expectedEmployeeKeys = [
@@ -9,18 +10,33 @@ const expectedEmployeeKeys = [
 ];
 
 describe("ROUTES | /job_titles", () => {
-  test("/job_titles returns an array with the expected object", async (done) => {
+  test("/job_titles | returns 401 Unauthorized", async (done) => {
     const result = await request.get("/job_titles");
+
+    expect(result.res.statusCode).toEqual(401);
+    expect(result.res.statusMessage).toEqual("Unauthorized");
+    done();
+  });
+  test("/job_titles returns an array with the expected object", async (done) => {
+    const result = await agent.get("/job_titles");
     expect(result.body.length).toBeGreaterThanOrEqual(1);
     expect(Object.keys(result.body[0])).toEqual(
       expect.arrayContaining(expectedEmployeeKeys)
     );
     done();
   });
+});
+describe("ROUTES | /job_titles/:department_name", () => {
+  test("/job_titles | returns 401 Unauthorized", async (done) => {
+    const result = await request.get("/job_titles/:test");
 
+    expect(result.res.statusCode).toEqual(401);
+    expect(result.res.statusMessage).toEqual("Unauthorized");
+    done();
+  });
   test("/job_titles/NotADeptName returns 422 Error", async (done) => {
     const deptName = "NotADeptName",
-      result = await request.get(`/job_titles/${deptName}`);
+      result = await agent.get(`/job_titles/${deptName}`);
 
     expect(result.res.statusCode).toEqual(422);
     expect(result.res.statusMessage).toEqual('"UNPROCESSABLE ENTITY"');
@@ -30,7 +46,7 @@ describe("ROUTES | /job_titles", () => {
 
   test("/job_titles/:department_name returns an array with the expected opject", async (done) => {
     const deptName = "Software",
-      result = await request.get(`/job_titles/${deptName}`);
+      result = await agent.get(`/job_titles/${deptName}`);
 
     expect(result.body.length).toBeGreaterThanOrEqual(1);
     expect(Object.keys(result.body[0])).toEqual(

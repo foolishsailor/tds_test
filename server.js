@@ -1,5 +1,6 @@
 const express = require("express");
 const server = express();
+const basicAuth = require("express-basic-auth");
 const { handleError } = require("./src/utils/error");
 
 require("dotenv").config();
@@ -14,6 +15,13 @@ const jobTitlesRoutes = require("./src/api/routes/jobTitles");
 server.use(express.Router());
 server.use(express.urlencoded({ extended: false }));
 server.use(express.json());
+
+server.use(
+  basicAuth({
+    users: { admin: process.env.PASSWORD },
+    challenge: true,
+  })
+);
 
 // Add headers to allow development from local machine
 if (process.env.NODE_ENV) {
