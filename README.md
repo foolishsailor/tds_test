@@ -57,8 +57,8 @@ All routes return 404 if no records found
 
 + #### GET /department
 ##### Success Response
-Status Code: 200  
-Content: [ {department_object}, ]  
+Status Code: **200**  
+Content: **[ {department_object}, ]**  
 
 ### Badges
 **badge_object:**
@@ -73,14 +73,14 @@ Content: [ {department_object}, ]
 ```  
 + #### GET /badges
 ##### Success Response
-Status Code: 200  
-Content: [ {badge_object}, ]  
+Status Code: **200**  
+Content: **[ {badge_object}, ]**  
   
 + #### GET /badges/active
 Returns all badges with:  
 ```.js 
 {
-badge_status: "Active,
+badge_status: "Active",
 badge_expiry_date: Date < Current_Date
 }
 ```  
@@ -135,12 +135,75 @@ Status Message: **No Records**
 Status Code: **200**  
 Content: **[ {job_title_object}, ]**  
   
+##### URL Param
+department_name=[string]
+  
 ##### Error Response
 Status Code: **404**  
 Status Message: **No Records**    
     
 Status Code: **422**  
-Status Message: **UNPROCESSABLE ENTITY**
+Status Message: **UNPROCESSABLE ENTITY**  
+  
+  
+### Employees
+**employee_object:**
+```.js
+  [
+    {
+      id: [integer],
+      firstname: [string],
+      lastname: [string],
+      badge_number: [integer],
+      country: [string],
+      job_title: '[string],
+      department: [string],
+      start_date: [ISODATE STRING],
+      leave_date: [ISODATE STRING | null],
+    }
+  ]
+```  
++ #### GET /employees
+##### Success Response
+Status Code: **200**  
+Content: **[ {employee_object}, ]**  
+  
+##### Error Response
+Status Code: **404**  
+Status Message: **No Records**    
+  
+  
++ #### GET /employees/active
+Returns all employees with:  
+```.js 
+{
+   leave_date: [null | , Date < Current_Date]
+}
+```  
+##### Success Response
+Status Code: **200**  
+Content: **[ {employee_object}, ]**  
+  
+##### Error Response
+Status Code: **404**  
+Status Message: **No Records**  
+  
++ #### GET /employees/active/suggested
+Returns all employees with:  
+```.js 
+{
+   leave_date: [null | , Date > Current_Date],
+   start_date: [Date < Current_Date]
+}
+```  
+##### Success Response
+Status Code: **200**  
+Content: **[ {employee_object}, ]**  
+  
+##### Error Response
+Status Code: **404**  
+Status Message: **No Records** 
+
     
 
 
