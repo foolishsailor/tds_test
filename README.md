@@ -86,23 +86,23 @@ badge_expiry_date: Date < Current_Date
 ```  
 ##### Success Response
 Status Code: **200**  
-Content: **[ {badge_object}, ]**  
+Content: **[ {badge_object}, ]**   
+
 ##### Error Response
-If no badges are currently active  
 Status Code: **404**  
 Status Message: **No Records**  
   
 #### GET /badges?badgeNumber=[badge_number]
-Returns all badges with badge_number 
+Returns all badges with badge_number  
+
 ##### Success Response
 Status Code: **200**  
 Content: **[ {badge_object} ]**  
+
 ##### Error Response
-If no badges are currently active  
 Status Code: **404**  
 Status Message: **No Records**    
     
-If query malformed or non-numeric  
 Status Code: **422**  
 Status Message: **UNPROCESSABLE ENTITY**
 
