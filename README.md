@@ -76,6 +76,11 @@ Content: **[ {department_object}, ]**
 Status Code: **200**  
 Content: **[ {badge_object}, ]**  
   
+  
+##### Error Response
+Status Code: **404**  
+Status Message: **No Records** 
+  
 + #### GET /badges/active
 Returns all badges with:  
 ```.js 
