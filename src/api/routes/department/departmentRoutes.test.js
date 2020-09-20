@@ -7,7 +7,7 @@ describe("ROUTES | /department", () => {
     const result = await request.get("/department");
     expect(result.body.length).toBeGreaterThan(1);
     expect(Object.keys(result.body[0])).toEqual(
-      expect.arrayContaining(["DEPARTMENT_CODE", "DEPARTMENT_NAME"])
+      expect.arrayContaining(["department_code", "department_name"])
     );
     done();
   });

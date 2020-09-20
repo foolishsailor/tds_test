@@ -8,6 +8,8 @@ require("./data/tdsDataBase");
 //routes
 const badgeRoutes = require("./src/api/routes/badges");
 const departmentRoutes = require("./src/api/routes/department");
+const employeeRoutes = require("./src/api/routes/employee");
+const jobTitlesRoutes = require("./src/api/routes/jobTitles");
 
 server.use(express.Router());
 server.use(express.urlencoded({ extended: false }));
@@ -31,6 +33,8 @@ if (process.env.NODE_ENV) {
 //configure routes
 server.use("/badges", badgeRoutes);
 server.use("/department", departmentRoutes);
+server.use("/employees", employeeRoutes);
+server.use("/job_titles", jobTitlesRoutes);
 
 //default notification of API availablility
 server.get("/", (req, res) => {

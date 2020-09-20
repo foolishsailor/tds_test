@@ -4,7 +4,7 @@ module.exports = {
   testEnvironment: "node",
   collectCoverage: true,
   collectCoverageFrom: [
-    "**/*.{js,jsx}",
+    "src/**/*.{js,jsx}",
     "!**/node_modules/**",
     "!**/vendor/**",
   ],

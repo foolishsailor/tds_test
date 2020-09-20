@@ -2,3 +2,28 @@
 2.  Keeping .env files in repo to simplify compiolng for test
 3.  added dependency injection in service
 4.  know i need to do date comparison in tests for active badge - cant remmber how to to greaterthan for object in array
+5.  would normally build and tear down db for testing - especially for testing edge case sql queries like the one suggessted below
+6.  becasue not creating db there is some fragility in tests with coded values for departments etc
+
+
+notes on suggested improvements:
+Im not sure the suggested criteria ofr an active employee reflects a real world example.
+
+requested criteria:
+1.  leave date == null or
+2. leave date in the past
+
+query = 'SELECT * FROM Employee WHERE LEAVE_DATE IS NULL OR LEAVE_DATE < CURRENT_TIMESTAMP'
+
+This would result in the following empployees also being included as "active";
+1.  Employees who have already left orginzation - leave date in past
+2.  Employees who have start dates in the future, like new hires that have been entered in system but arent currently live
+
+Suggested criteria and query
+
+I assume an "active employee" is one who is curretnly working at said organization and therefore would have the following criteria met:
+1. start date IS NOT NULL and before NOW
+2. leave date null or after now
+
+query = 'SELECT * FROM Employee WHERE (START_DATE IS NOT NULL AND START_DATE < CURRENT_TIMESTAMP) AND (LEAVE_DATE IS NULL OR LEAVE_DATE > CURRENT_TIMESTAMP)'
+

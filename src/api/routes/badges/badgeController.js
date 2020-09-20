@@ -4,12 +4,12 @@ const oracledb = require("oracledb");
 module.exports = {
   getBadges: async (req, res, next) => {
     const connection = await oracledb.getConnection();
-    const badgeNumbers = req.query.badge_number;
+    const badgeNumber = req.query.badge_number;
 
     try {
-      if (badgeNumbers)
+      if (badgeNumber)
         return res.json(
-          await BadgeService.getBadgeByNumber({ badgeNumbers, connection })
+          await BadgeService.getBadgeByNumber({ badgeNumber, connection })
         );
 
       return res.json(await BadgeService.getBadges({ connection }));

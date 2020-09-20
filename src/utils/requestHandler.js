@@ -13,7 +13,12 @@ const closeConnection = async (connection) => {
   }
 };
 
-const handleRequest = async ({ connection, queryString, bind = {} }) => {
+const handleRequest = async ({
+  connection,
+  queryString,
+  bind = {},
+  keepOpen = false,
+}) => {
   if (!connection) throw { statusCode: 503, message: "Service Unavailable" };
 
   try {
@@ -26,7 +31,7 @@ const handleRequest = async ({ connection, queryString, bind = {} }) => {
   } catch (err) {
     throw err;
   } finally {
-    if (connection) closeConnection(connection);
+    if (connection && !keepOpen) closeConnection(connection);
   }
 };
 
