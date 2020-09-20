@@ -284,7 +284,7 @@ Status Message: **UNPROCESSABLE ENTITY**
 
 This would result in the following employees also being included as "active";
 
-1.  Employees who have already left orginzation - leave date in past
+1.  Employees who have already left organzation - leave date in past
 2.  Employees who have start dates in the future, like new hires that have been entered in system but arent currently live
 
 #### route: /employees/active/suggested
