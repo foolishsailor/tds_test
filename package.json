@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start:dev": "set NODE_ENV=development&& nodemon server.js",
-    "star": "set NODE_ENV=production&& nodemon server.js",
+    "start": "set NODE_ENV=production&& nodemon server.js",
     "test:watch": "set NODE_ENV=test&& jest --watch --detectOpenHandles",
     "test:coverage": "set NODE_ENV=test&& jest  --coverage --watchAll=false --detectOpenHandles"
   },
