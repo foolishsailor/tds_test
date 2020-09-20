@@ -187,7 +187,7 @@ Status Message: **UNPROCESSABLE ENTITY**
       lastname: [string],
       badge_number: [integer],
       country: [string],
-      job_title: '[string],
+      job_title: [string],
       department: [string],
       start_date: [ISODATE STRING],
       leave_date: [ISODATE STRING | null],
