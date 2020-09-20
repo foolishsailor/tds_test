@@ -89,8 +89,8 @@ describe("ROUTES | /employees/active", () => {
   });
 });
 
-describe("ROUTES | /employees/active", () => {
-  test("/employees/active | returns 401 Unauthorized", async (done) => {
+describe("ROUTES | /employees/active/suggested", () => {
+  test("/employees/active/suggested | returns 401 Unauthorized", async (done) => {
     const result = await request.get("/employees/active");
     expect(result.res.statusCode).toEqual(401);
     expect(result.res.statusMessage).toEqual("Unauthorized");
