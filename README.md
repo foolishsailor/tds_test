@@ -1,13 +1,14 @@
 # tds-test
 
-This is a RESTful API built to the reuquirements outlined here
+This is a RESTful API built to the reuquirements outlined here [Design Brief](https://github.com/foolishsailor/tds_test/blob/master/designNotes/Integrations%20Developer%20Remote%20Assessment.pdf)
+
 
 ## Installation
 
-Clone repository
+Clone repository: 
 `git clone https://github.com/foolishsailor/tds_test.git`
 
-Build Project
+Build Project:
 `npm install`
 
 This project uses node-oracledb to interact with Oracle Databases and requires:
@@ -23,4 +24,7 @@ MAC Installation: https://oracle.github.io/node-oracledb/INSTALL.html#-33-node-o
 Start applilcation
 `npm start`
 
-API will be available on
+View Test Coverage
+`npm run test:coverage`
+
+API will be available on `http://localhost:8080/`
