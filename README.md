@@ -3,6 +3,10 @@
 This is a RESTful API built to the requirements outlined here [Design Brief](https://github.com/foolishsailor/tds_test/blob/master/designNotes/Integrations%20Developer%20Remote%20Assessment.pdf)
 
 ## Installation
+Pre-requisites:
+   Node 12.18.4 LTS  
+   
+   *note: Node 14.x does not play well with oracledb libraries and generates intermittent Windows Access Violations "npm errno 3221225477" and is not supported by this application"
 
 1. Clone repository:
    `git clone https://github.com/foolishsailor/tds_test.git`
