@@ -31,7 +31,7 @@ API will be available on `http://localhost:8080/`
 
 #### Notes on Authentication
 
-A basic static authentication has been used for demonstration purposes using a fixed authentication stored in environment variables. This was done to simply illustrate authenticated routes without requiring a seperate database. This would never be done in production.
+A basic static authentication has been used for demonstration purposes using a fixed authentication stored in environment variables. This was done to simply illustrate authenticated routes without requiring a separate database. This would never be done in production.
 
 #### Credentials
 
@@ -41,7 +41,7 @@ A basic static authentication has been used for demonstration purposes using a f
 
 ## API
 
-All routes require basic authentication as detailed above and return a 401 Error when no authroization is received. If viewing routes in a browser a popup challenge will appear asking for credentials.
+All routes require basic authentication as detailed above and return a 401 Error when no authorization is received. If viewing routes in a browser a popup challenge will appear asking for credentials.
 All routes return 404 if no records found
 
 ### Department
@@ -284,8 +284,8 @@ Status Message: **UNPROCESSABLE ENTITY**
 
 This would result in the following employees also being included as "active";
 
-1.  Employees who have already left organzation - leave date in past
-2.  Employees who have start dates in the future, like new hires that have been entered in system but arent currently live
+1.  Employees who have already left organization - leave date in past
+2.  Employees who have start dates in the future, like new hires that have been entered in system but aren't currently live
 
 #### route: /employees/active/suggested
 
