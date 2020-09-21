@@ -14,7 +14,7 @@ const handleError = (err, res) => {
   console.log("MESSAGE", message);
   console.log("******** ERROR END ******");
   */
-  res.statusMessage = JSON.stringify(message);
+  res.statusMessage = message;
 
   res.status(statusCode).send();
 };

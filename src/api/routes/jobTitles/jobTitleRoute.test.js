@@ -39,7 +39,7 @@ describe("ROUTES | /job_titles/:department_name", () => {
       result = await agent.get(`/job_titles/${deptName}`);
 
     expect(result.res.statusCode).toEqual(422);
-    expect(result.res.statusMessage).toEqual('"UNPROCESSABLE ENTITY"');
+    expect(result.res.statusMessage).toEqual("UNPROCESSABLE ENTITY");
 
     done();
   });

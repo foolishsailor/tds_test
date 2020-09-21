@@ -47,7 +47,7 @@ describe("ROUTES | /badges", () => {
     const result = await agent.get("/badges?badge_number=aString");
 
     expect(result.res.statusCode).toEqual(422);
-    expect(result.res.statusMessage).toEqual('"UNPROCESSABLE ENTITY"');
+    expect(result.res.statusMessage).toEqual("UNPROCESSABLE ENTITY");
 
     done();
   });
@@ -56,7 +56,7 @@ describe("ROUTES | /badges", () => {
     const result = await agent.get("/badges?badge_number=9999999");
 
     expect(result.res.statusCode).toEqual(404);
-    expect(result.res.statusMessage).toEqual('"No Records"');
+    expect(result.res.statusMessage).toEqual("No Records");
 
     done();
   });
