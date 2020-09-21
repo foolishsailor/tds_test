@@ -6,7 +6,7 @@ This is a RESTful API built to the requirements outlined here [Design Brief](htt
 Pre-requisites:
    Node 12.18.4 LTS  
    
-   *note: Node 14.x does not play well with oracledb libraries and generates intermittent Windows Access Violations "npm errno 3221225477" and is not supported by this application"
+   _note: Node 14.x does not play well with oracledb libraries and generates intermittent Windows Access Violations "npm errno 3221225477" and is not supported by this application"_
 
 1. Clone repository:
    `git clone https://github.com/foolishsailor/tds_test.git`
