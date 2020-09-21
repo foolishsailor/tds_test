@@ -10,14 +10,25 @@ This is a RESTful API built to the requirements outlined here [Design Brief](htt
 2. Build Project:
    `npm install`
 
-3. Install Oracle Libraries
+3. Install Oracle Instant Client libraries  
    This project uses node-oracledb to interact with Oracle Databases and requires:
 
-Oracle Client libraries (64-bit) must be available.
+**Oracle Instant Client libraries**  
 
-Follow the installation instructions:  
-Windows Installation: https://oracle.github.io/node-oracledb/INSTALL.html#windowsinstallation  
-MAC Installation: https://oracle.github.io/node-oracledb/INSTALL.html#-33-node-oracledb-installation-on-apple-macos
+QuickStart - The "Instant Libraries", which is all that is needed for this project, are found here:  
+**Windows**  
+[Download](https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html)  
+[Installation Instructions](https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html#ic_winx64_inst)  
+  
+**Mac**  
+[Download](https://www.oracle.com/database/technologies/instant-client/macos-intel-x86-downloads.html)  
+[Installation Instructions](https://www.oracle.com/database/technologies/instant-client/macos-intel-x86-downloads.html#ic_osx_inst)
+
+
+The following more detailed installation instructions including installing any additional prerequisites and troubleshooting:  
+[Windows Installation](https://oracle.github.io/node-oracledb/INSTALL.html#windowsinstallation)  
+[MAC Installation](https://oracle.github.io/node-oracledb/INSTALL.html#-33-node-oracledb-installation-on-apple-macos)
+  
 
 ## Usage
 
