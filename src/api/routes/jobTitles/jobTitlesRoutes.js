@@ -1,10 +1,6 @@
-const jobTitlesRoutes = require("express").Router();
-const JobTitleController = require("./jobTitlesController");
+module.exports = (routes, controller) => {
+  routes.get("/", controller.getJobTitles);
+  routes.get("/:department_name", controller.getJobTitlesByDepartment);
 
-jobTitlesRoutes.get("/", JobTitleController.getJobTitles);
-jobTitlesRoutes.get(
-  "/:department_name",
-  JobTitleController.getJobTitlesByDepartment
-);
-
-module.exports = jobTitlesRoutes;
+  return routes;
+};

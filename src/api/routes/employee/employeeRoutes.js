@@ -1,11 +1,7 @@
-const employeeRoutes = require("express").Router();
-const EmployeeController = require("./employeeController");
+module.exports = (routes, controller) => {
+  routes.get("/", controller.getEmployees);
+  routes.get("/active", controller.getActiveEmployees);
+  routes.get("/active/suggested", controller.getActiveEmployees_suggested);
 
-employeeRoutes.get("/", EmployeeController.getEmployees);
-employeeRoutes.get("/active", EmployeeController.getActiveEmployees);
-employeeRoutes.get(
-  "/active/suggested",
-  EmployeeController.getActiveEmployees_suggested
-);
-
-module.exports = employeeRoutes;
+  return routes;
+};

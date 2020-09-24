@@ -1,4 +1,3 @@
-const handleRequest = require("../../../utils/requestHandler");
 const fetchCountry = require("../../../utils/fetchCountry");
 const { checkDeptExist } = require("../../../utils/validateData");
 
@@ -10,41 +9,43 @@ const baseQueryString = `SELECT ID as "id", FIRSTNAME as "firstname", LASTNAME a
                             INNER JOIN Department
                               ON Job_Title.Department_Code = Department.Department_Code`;
 
-module.exports = {
-  getEmployees: async ({ connection }) => {
-    const result = await handleRequest({
-      connection,
-      queryString: baseQueryString,
-    });
-    return fetchCountry(result);
-  },
+module.exports = (request) => {
+  return {
+    getEmployees: async ({ connection }) => {
+      const result = await request({
+        connection,
+        queryString: baseQueryString,
+      });
+      return fetchCountry(result);
+    },
 
-  getEmployeesByDepartment: async ({ department, connection }) => {
-    //check for valid department and get department code
-    await checkDeptExist({ department, connection });
+    getEmployeesByDepartment: async ({ department, connection }) => {
+      //check for valid department and get department code
+      await checkDeptExist({ department, connection });
 
-    const queryString =
-      baseQueryString + ` WHERE Department_Name = :department`;
+      const queryString =
+        baseQueryString + ` WHERE Department_Name = :department`;
 
-    const result = await handleRequest({
-      connection,
-      queryString,
-      bind: { department },
-    });
-    return fetchCountry(result);
-  },
-  getActiveEmployees: async ({ connection }) => {
-    const queryString =
-      baseQueryString +
-      ` WHERE LEAVE_DATE IS NULL OR LEAVE_DATE < CURRENT_TIMESTAMP `;
-    const result = await handleRequest({ connection, queryString });
-    return fetchCountry(result);
-  },
-  getActiveEmployees_suggested: async ({ connection }) => {
-    const queryString =
-      baseQueryString +
-      ` WHERE (START_DATE IS NOT NULL AND START_DATE < CURRENT_TIMESTAMP) AND (LEAVE_DATE IS NULL OR LEAVE_DATE > CURRENT_TIMESTAMP)`;
-    const result = await handleRequest({ connection, queryString });
-    return fetchCountry(result);
-  },
+      const result = await request({
+        connection,
+        queryString,
+        bind: { department },
+      });
+      return fetchCountry(result);
+    },
+    getActiveEmployees: async ({ connection }) => {
+      const queryString =
+        baseQueryString +
+        ` WHERE LEAVE_DATE IS NULL OR LEAVE_DATE < CURRENT_TIMESTAMP `;
+      const result = await request({ connection, queryString });
+      return fetchCountry(result);
+    },
+    getActiveEmployees_suggested: async ({ connection }) => {
+      const queryString =
+        baseQueryString +
+        ` WHERE (START_DATE IS NOT NULL AND START_DATE < CURRENT_TIMESTAMP) AND (LEAVE_DATE IS NULL OR LEAVE_DATE > CURRENT_TIMESTAMP)`;
+      const result = await request({ connection, queryString });
+      return fetchCountry(result);
+    },
+  };
 };

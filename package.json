@@ -4,7 +4,7 @@
   "description": "Demonstrate ability to develope Basic RESTful API",
   "main": "server.js",
   "scripts": {
-    "start:dev": "set NODE_ENV=development&&  node server.js",
+    "start:dev": "set NODE_ENV=development&&  nodemon node server.js",
     "start": "set NODE_ENV=production&& nodemon node server.js",
     "test:watch": "set NODE_ENV=test&& jest --watch --detectOpenHandles",
     "test:coverage": "set NODE_ENV=test&& jest  --coverage --watchAll=false --detectOpenHandles"
