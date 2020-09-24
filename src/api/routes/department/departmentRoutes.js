@@ -1,6 +1,5 @@
-const departmentRoutes = require("express").Router();
-const DepartmentController = require("./departmentController");
+module.exports = (routes, controller) => {
+  routes.get("/", controller.getDepartment);
 
-departmentRoutes.get("/", DepartmentController.getDepartment);
-
-module.exports = departmentRoutes;
+  return routes;
+};
