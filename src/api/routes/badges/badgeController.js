@@ -1,28 +1,27 @@
-const BadgeService = require("./badgeService");
-const oracledb = require("oracledb");
+module.exports = (service, conn) => {
+  return {
+    getBadges: async (req, res, next) => {
+      const connection = await conn();
+      const badgeNumber = req.query.badge_number;
 
-module.exports = {
-  getBadges: async (req, res, next) => {
-    const connection = await oracledb.getConnection();
-    const badgeNumber = req.query.badge_number;
+      try {
+        if (badgeNumber)
+          return res.json(
+            await service.getBadgeByNumber({ badgeNumber, connection })
+          );
 
-    try {
-      if (badgeNumber)
-        return res.json(
-          await BadgeService.getBadgeByNumber({ badgeNumber, connection })
-        );
-
-      return res.json(await BadgeService.getBadges({ connection }));
-    } catch (err) {
-      return next(err);
-    }
-  },
-  getActiveBadges: async (req, res, next) => {
-    const connection = await oracledb.getConnection();
-    try {
-      return res.json(await BadgeService.getActiveBadges({ connection }));
-    } catch (err) {
-      return next(err);
-    }
-  },
+        return res.json(await service.getBadges({ connection }));
+      } catch (err) {
+        return next(err);
+      }
+    },
+    getActiveBadges: async (req, res, next) => {
+      const connection = await conn();
+      try {
+        return res.json(await service.getActiveBadges({ connection }));
+      } catch (err) {
+        return next(err);
+      }
+    },
+  };
 };

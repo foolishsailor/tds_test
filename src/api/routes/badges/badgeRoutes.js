@@ -1,7 +1,6 @@
-const badgeRoutes = require("express").Router();
-const BadgeController = require("./badgeController");
+module.exports = (routes, controller) => {
+  routes.get("/", controller.getBadges);
+  routes.get("/active", controller.getActiveBadges);
 
-badgeRoutes.get("/", BadgeController.getBadges);
-badgeRoutes.get("/active", BadgeController.getActiveBadges);
-
-module.exports = badgeRoutes;
+  return routes;
+};
